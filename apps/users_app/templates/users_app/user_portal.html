@@ -4,103 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'login_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+      <!-- Bootstrap -->
+      {% load static %}
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+
+
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to Your Record Store {name}</h1>
-    <div class="search">
-        <form action="" method="POST">
-        Search<input type="text" name="search">
-        <input type="submit" value="Go">
-        </form>
-    </div>
-    <div class="cart">
-        <h4>Your Cart</h4>
-        <p>{Count}</p>
-       <img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:100px;height:100px">
-       <a href="">View Cart</a>
-    </div>
-    <div class="category">
-        <h4>Categories</h4>
-        <form action="" method="POST">
-        {%csrf_token%}
-        <select>
-            <option value="1">Rap/Hip-Hop</option>
-            <option value="2">Rock</option>
-            <option value="3">EDM/House</option>
-            <option value="4">Pop</option>
-            <option value="5">Blues</option>
-        </select>
-        <input type="submit" value="Go">
-        </form>
-    </div>
-    <div class="artist">
-        <h4>Artists</h4>
-        <form action="" method="POST">
-        {%csrf_token%}
-        <select>
-            <option value="1">Tupac</option>
-            <option value="2">Red Hot Chilli Peppers</option>
-            <option value="3">Zhu</option>
-            <option value="4"></option>
-            <option value="5"></option>
-        </select>
-        <input type="submit" value="Go">
-        </form>
-    </div>
-    <div class="recordlist">
-        <h3>Selection of Records we offer</h3>
-         <table>
-            <thead>
-                <tr>
-                    <th>Record</th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--add jinja loop here-->
-                <tr>
-                    <td><a href="">{record.name}</a></td>    
-                    <td><a href="">{record.artist}</a></td>   
-                    <td><a href="">{record.genre}</a></td>    
-                    <td>{record.price}</td>   
-                    <td>{record.description}</td>   
-                    <td><a href="">Add to Cart</a></td>   
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="orders">
-        <h3>Your Orders</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Record</th>
-                    <th>Ordered On</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--add jinja loop here-->
-                <tr>
-                    <td><a href="">{record.name}</a></td>    
-                    <td>{record.price}</td>   
-                    <td>{record.status}</td>   
-                    <td><a href="">Remove from Cart</a></td>   
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                    </button>
+                <div class="navbar-brand">
+                    <a href="index.html"><h1>Welcome to Your Record Store</h1></a>
+                </div>
+                </div>
     
+                <div class="navbar-collapse collapse">
+                <div class="menu">
+                    <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="#home" class="active">Home</a></li>
+                    <li role="presentation"><a href="#about">About Us</a></li>
+                    <li role="presentation"><a href="#Cart">Cart</li>
+                    <img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-top: 14px;"></a>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
 
-    <a href="/logout">Logout</a>
+    <div id="home">
+            <div class="slider">
+              <div class="">
+                <div id="about-slider">
+                  <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators visible-xs">
+                      <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+                      <li data-target="#carousel-slider" data-slide-to="1"></li>
+                      <li data-target="#carousel-slider" data-slide-to="2"></li>
+                    </ol>
+        
+                    <div class="carousel-inner">
+                      <div class="item active">
+                          {% load static %}
+                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                      </div>
+                      <div class="item">
+                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                      </div>
+                      <div class="item">
+                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                      </div>
+                    </div>
+        
+                    <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+        
+                    <a class=" right carousel-control hidden-xs" href="#carousel-slider" data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                  </div>
+                  <!--/#carousel-slider-->
+                </div>
+                <!--/#about-slider-->
+              </div>
+            </div>
+          </div>
+        
+    <section id="search">
+    <div class="container">
+        <div class="center">
+            <div class="col-md-6 col-md-offset-3">
+            <h2>Search For Music</h2>
+            <hr>
+            <form action="" method="POST">
+    
+                <input type="text" name="search" id="searchbar">
+                <input type="submit" value="Go">
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+    <div id="recordselection">
+        <div class="container">
+            <div class="center">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>List of our Products</h2>
+                <hr>
+            </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+                <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
+                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                    <h4 style="">Album Title</h4>
+                    <h5>Album Artist</h5>
+                </div>
+                <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+                <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
+                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                    <h4 style="">Album Title</h4>
+                    <h5>Album Artist</h5>
+                </div>
+                <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+                <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
+                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                    <h4 style="">Album Title</h4>
+                    <h5>Album Artist</h5>
+                </div>
+                <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+
+
+                                    <!-- <div class="col-sm-3 col-md-offset-3">
+                                        <div class="center">
+                                                <h4>Categories</h4>
+                                                <form action="" method="POST">
+                                                {%csrf_token%}
+                                                <select style="width: 200px">
+                                                    <option value="1">Rap/Hip-Hop</option>
+                                                    <option value="2">Rock</option>
+                                                    <option value="3">EDM/House</option>
+                                                    <option value="4">Pop</option>
+                                                    <option value="5">Blues</option>
+                                                </select>
+                                                <input type="submit" value="Go">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    <div class="col-sm-3">
+                                        <div class="center">
+                                            <h4>Artists</h4>
+                                            <form action="" method="POST">
+                                            {%csrf_token%}
+                                            <select style="width:200px">
+                                                <option value="1">Tupac</option>
+                                                <option value="2">Red Hot Chilli Peppers</option>
+                                                <option value="3">Zhu</option>
+                                                <option value="4">Greg Friedlander</option>
+                                                <option value="5">Michael Topmiller</option>
+                                            </select>
+                                            <input type="submit" value="Go">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> -->
+    </div>
+
+                <!-- 
+
+                    <div class="recordlist">
+                        <h3>Selection of Records we offer</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Record</th>
+                                    <th>Artist</th>
+                                    <th>Genre</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--add jinja loop here-->
+                                <!-- <tr>
+                                    <td><a href="">{record.name}</a></td>    
+                                    <td><a href="">{record.artist}</a></td>   
+                                    <td><a href="">{record.genre}</a></td>    
+                                    <td>{record.price}</td>   
+                                    <td>{record.description}</td>   
+                                    <td><a href="">Add to Cart</a></td>   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+    </div>
+
+    <footer>
+            <div class="container">
+              <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <h4>About Us</h4>
+                <p>We are recordstore.com</p>
+                <div class="contact-info">
+                  <ul>
+                    <li><i class="fa fa-home fa"></i> 175 E Olive St. Burbank, CA 91502</li>
+                    <li><i class="fa fa-phone fa"></i> 747 200 5558</li>
+                    <li><i class="fa fa-envelope fa"></i> dojo@dojo.com</li>
+                  </ul>
+                </div>
+              </div>
+        
+              <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div class="text-center">
+                  <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
+
+                </div>
+              </div>
+        
+            </div>
+          </footer>
+        
 </body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  {% load static %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+  <script src="{% static 'js/wow.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
+  <script src="{% static 'js/functions.js' %}"></script>
 </html>
