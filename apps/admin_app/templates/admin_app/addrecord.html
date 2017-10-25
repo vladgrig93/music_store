@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Record</title>
+</head>
+<body>
+    <h1>Add Record Page</h1>
+    <form action="/admin/proccess_record" method="POST">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif%}
+        <table>
+            <tr>
+                <td>Record Title:</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Artist:</td>
+                <td><input type="text" name="artist"></td>
+            </tr>
+            <tr>
+                <td>Genre:</td>
+                <td><input type="text" name="genre"></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input type="text" name="price"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <td>Image File (optional):</td>
+                <td><input type="text" name:"picture"></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit Record</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

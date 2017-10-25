@@ -7,7 +7,58 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to the Admin Portal</h1>
     <a href="/logout">Logout</a>
+    <h1>Welcome to the Admin Portal</h1>
+    <div class="usertable">
+        <h3>Users Table</h3>
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>Action</td>
+            </thead>
+            <tbody>
+                <!-- jinja code for filling in the user table with edit & remove buttons -->
+            </tbody>
+        </table>
+    </div>
+    <div class="recordtable">
+        <h3>Record Table</h3>
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>Artist</td>
+                <td>Genre</td>
+                <td>Action</td>
+            </thead>
+            <tbody>
+                <!-- jinja code for filling record table with edit & remove actions -->
+            </tbody>
+        </table>
+    </div>
+    <div class="artisttable">
+        <h3>Artist Table</h3>
+        <table>
+            <thead>
+                <th>Artist</th>
+            </thead>
+            <tbody>
+                <!-- jinja code for filling record table with edit & remove actions -->
+            </tbody>
+        </table>
+    </div>
+    <div class="ordertable">
+        <h3>Order Table</h3>
+        <table>
+            <thead>
+                <td>Order #</td>
+                <td>Status</td>
+                <td>Action</td>
+            </thead>
+            <tbody>
+                <!-- jinja code for filling order table with change status button -->
+            </tbody>
+        </table>
+    </div>
+    <a href="addrecord"><button>Add a Record</button></a>
 </body>
 </html>
