@@ -7,10 +7,9 @@
     <title>Artist Profile</title>
 </head>
 <body>
-    <h1>{artist.name}</h1>
-    <h1>{artist.image}</h1>
-    <h3>{artist.description}</h3>       
-    <h3>{artist.genre}</h3>       
+    <h1>{{request.session.artist}}</h1>
+    <h1>{{display.art_image}}</h1>
+    <h3>{{display.bio}}</h3>  
     <h3><a href="">Home</a></h3>      
     <a href="/logout">Logout</a>              
 </body>
