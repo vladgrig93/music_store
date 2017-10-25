@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Items in my cart</h1>
+    <div class="orders">
+        <table>
+            <thead>
+                <tr>
+                    <th>Record</th>
+                    <th>Quantity</th>
+                    <th>Ordered On</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--add jinja loop here-->
+                <tr>
+                    <td><a href="">{record.name}</a></td>    
+                    <td>{record.quantity}</td>    
+                    <td>{record.price}</td>   
+                    <td>{record.status}</td>   
+                    <td><a href="">Remove from Cart</a></td>   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form action="/your-server-side-code" method="POST">
+    <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-amount="{order.total}"
+    data-name="Stripe.com"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true">
+    </script>
+    </form>
+<a href="">Home</a> 
+<a href="/logout">Logout</a>     
+</body>
+</html>

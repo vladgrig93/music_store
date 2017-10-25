@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Categories</title>
+</head>
+<body>
+<div class="recordlist">
+    <h1>Records in {record.genre}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Record</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--add jinja loop here-->
+            <tr>
+                <td><a href="">{record.name}</a></td>    
+                <td><a href="">{record.artist}</a></td>   
+                <td><a href="">{record.genre}</a></td>   
+                <td>{record.price}</td>   
+                <td>{record.description}</td>   
+                <td><a href="">Add to Cart</a></td>   
+            </tr>
+        </tbody>
+    </table>
+</div>
+<a href="/logout">Logout</a>
+</body>
+</html>

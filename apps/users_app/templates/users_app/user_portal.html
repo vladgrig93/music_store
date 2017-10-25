@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Your Record Store {name}</h1>
+    <div class="search">
+        <form action="" method="POST">
+        Search<input type="text" name="search">
+        <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="cart">
+        <h4>Your Cart</h4>
+        <p>{Count}</p>
+       <img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:100px;height:100px">
+       <a href="">View Cart</a>
+    </div>
+    <div class="category">
+        <h4>Categories</h4>
+        <form action="" method="POST">
+        {%csrf_token%}
+        <select>
+            <option value="1">Rap/Hip-Hop</option>
+            <option value="2">Rock</option>
+            <option value="3">EDM/House</option>
+            <option value="4">Pop</option>
+            <option value="5">Blues</option>
+        </select>
+        <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="artist">
+        <h4>Artists</h4>
+        <form action="" method="POST">
+        {%csrf_token%}
+        <select>
+            <option value="1">Tupac</option>
+            <option value="2">Red Hot Chilli Peppers</option>
+            <option value="3">Zhu</option>
+            <option value="4"></option>
+            <option value="5"></option>
+        </select>
+        <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="recordlist">
+        <h3>Selection of Records we offer</h3>
+         <table>
+            <thead>
+                <tr>
+                    <th>Record</th>
+                    <th>Artist</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--add jinja loop here-->
+                <tr>
+                    <td><a href="">{record.name}</a></td>    
+                    <td><a href="">{record.artist}</a></td>   
+                    <td><a href="">{record.genre}</a></td>    
+                    <td>{record.price}</td>   
+                    <td>{record.description}</td>   
+                    <td><a href="">Add to Cart</a></td>   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="orders">
+        <h3>Your Orders</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Record</th>
+                    <th>Ordered On</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--add jinja loop here-->
+                <tr>
+                    <td><a href="">{record.name}</a></td>    
+                    <td>{record.price}</td>   
+                    <td>{record.status}</td>   
+                    <td><a href="">Remove from Cart</a></td>   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
