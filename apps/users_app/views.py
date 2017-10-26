@@ -74,10 +74,20 @@ def artist(request, artist_id):
     context={'artist':artist}
     return render(request, 'users_app/artist.html', context)
 
+<<<<<<< HEAD
 def record(request, artist_record_id):
     record=Record.objects.get(id=artist_record_id)
     context={'record':record}
     return render(request, 'users_app/records.html', context)
+=======
+
+
+def record(request):
+    pass
+>>>>>>> changed models
+
+def displaycart(request):
+    return render(request, 'users_app/cart.html')
 
 def search(request):
     noartist = False
