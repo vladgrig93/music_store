@@ -10,7 +10,7 @@ stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
 
 def index(request):
     if len(Artist.objects.all())<1:
-        Artist.objects.create(name='Tiesto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', 
+        Artist.objects.create(name='Ti esto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', 
         art_image="https://images-na.ssl-images-amazon.com/images/I/C1blmwzSGfS._SL1000_.png", record=(Record.objects.create(name='Club hits 2017', rec_image="https://pbs.twimg.com/profile_images/815327700810285057/25nr1B16.jpg", price=20, genre='EDM', description='best of tiesto')))
         Artist.objects.create(name='Tupac', bio='Shakur began his career as a roadie, backup dancer, and MC for the alternative hip hop group Digital Underground, eventually branching off as a solo artist', art_image="http://www.billboard.com/files/media/tupac-bw-portrait-photofest-billboard-1548.jpg", record=(Record.objects.create(name='All Eyez on Me', rec_image='https://static.gigwise.com/community/105571/all-eyez-on-me-20-qd3-remembers-2pac-his-seminal-death-row-debut-vts41ruk', price=20, genre='Rap', description='Latest studio album by Tupac')))
         Artist.objects.create(name='System of a Down', bio='In June 1998, System of a Down released their debut album, System of a Down. They enjoyed moderate success as their first singles "Sugar" and "Spiders" became radio favorites and the music videos for both songs were frequently aired on MTV', art_image='http://assets.blabbermouth.net/media/systemofadown2014band_638.jpg', record=(Record.objects.create(name='Toxicity', rec_image='https://images-na.ssl-images-amazon.com/images/I/61Wt2PvyIhL.jpg', price=20, genre='Rock', description='2nd album by SOAD!')))
@@ -102,8 +102,8 @@ def displaycart(request):
     totalprice = 0
 
     if not 'cart' in request.session:
-        return render(request, 'users_app/cart.html')
-    
+        request.session['cart'] = []
+
     for record in request.session['cart']:
         recordobj = Record.objects.get(id=record['id'])
         recordobj_q = record['quantity']
@@ -114,18 +114,13 @@ def displaycart(request):
         totalprice+=itemprice
     user = User.objects.get(id=request.session['id'])
     previousorders = Order.objects.filter(user = user)
-    newrecorditem = RecordItem.objects.create(order = previousorders[0], record = Record.objects.first(), quantity = 42)
-    print newrecorditem
-    # for order in previousorders:
-    #     print order
-    #     recorditems = order.recorditems.all()
-        
-        
-    #     print recorditems
+    
+    for order in previousorders:
+        recorditems = order.orderItems.all()
+        for recorditem in recorditems:
+            listofpreviousorders.append(recorditem)
 
 
-    #     for recorditem in recorditems:
-    #         listofpreviousorders.append(order)
     context = {
         "listofrecords":listofrecords,
         "totalprice":int(totalprice)*100,

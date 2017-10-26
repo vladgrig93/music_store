@@ -73,8 +73,8 @@ class Artist(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
 
 class RecordItem(models.Model):
-    order = models.ForeignKey(Order)
-    record = models.ForeignKey(Record)
+    order = models.ForeignKey(Order, related_name = "orderItems")
+    record = models.ForeignKey(Record, related_name="recorditem1")
     quantity = models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
