@@ -60,7 +60,7 @@ class Record(models.Model):
 class Order(models.Model):
     status=models.BooleanField(default=False)
     user=models.ForeignKey(User, related_name='user_orders')
-    recorditems = models.ManyToManyField(Record, through="RecordItem")
+    recorditems = models.ManyToManyField(Record, through="RecordItem", related_name='order_item')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
@@ -73,8 +73,8 @@ class Artist(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
 
 class RecordItem(models.Model):
-    order = models.ForeignKey(Order, related_name="orderItems")
-    record = models.ForeignKey(Record, related_name="recordItems")
+    order = models.ForeignKey(Order)
+    record = models.ForeignKey(Record)
     quantity = models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

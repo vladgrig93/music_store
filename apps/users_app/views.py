@@ -1,5 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
 from ..login_app.models import *
+import stripe
+
+
+stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
+
+
+
+
 def index(request):
     if len(Artist.objects.all())<1:
         Artist.objects.create(name='Tiesto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', 
@@ -74,20 +82,88 @@ def artist(request, artist_id):
     context={'artist':artist}
     return render(request, 'users_app/artist.html', context)
 
-<<<<<<< HEAD
 def record(request, artist_record_id):
     record=Record.objects.get(id=artist_record_id)
     context={'record':record}
     return render(request, 'users_app/records.html', context)
-=======
 
-
-def record(request):
-    pass
->>>>>>> changed models
-
+def addrecord(request):
+    if 'cart' not in request.session:
+        request.session['cart'] = []
+    saved_list = request.session['cart']
+    recordobject = {"id":request.POST['recordid'], "quantity":request.POST['quantity']}
+    saved_list.append(recordobject)
+    request.session['cart'] = saved_list
+    return redirect('/user/cart')
+    
 def displaycart(request):
-    return render(request, 'users_app/cart.html')
+    listofrecords = []
+    listofpreviousorders = []
+    totalprice = 0
+
+    if not 'cart' in request.session:
+        return render(request, 'users_app/cart.html')
+    
+    for record in request.session['cart']:
+        recordobj = Record.objects.get(id=record['id'])
+        recordobj_q = record['quantity']
+        newrecordobj = {'record':recordobj, 'quantity':recordobj_q}
+        listofrecords.append(newrecordobj)
+    for recordobj in listofrecords:
+        itemprice = recordobj['record'].price*int(recordobj['quantity'])
+        totalprice+=itemprice
+    user = User.objects.get(id=request.session['id'])
+    previousorders = Order.objects.filter(user = user)
+    newrecorditem = RecordItem.objects.create(order = previousorders[0], record = Record.objects.first(), quantity = 42)
+    print newrecorditem
+    # for order in previousorders:
+    #     print order
+    #     recorditems = order.recorditems.all()
+        
+        
+    #     print recorditems
+
+
+    #     for recorditem in recorditems:
+    #         listofpreviousorders.append(order)
+    context = {
+        "listofrecords":listofrecords,
+        "totalprice":int(totalprice)*100,
+        "listorders":listofpreviousorders,
+    }
+    return render(request, 'users_app/cart.html', context)
+
+
+def removeitem(request):
+    recordid = request.POST['record_to_be_deleted']
+    recordq = request.POST['record_quantity']
+    saved_list = request.session['cart']
+    for item in saved_list:
+        if ((item['id'] == recordid )and (item['quantity']==recordq)):
+            saved_list.remove(item)
+            request.session['cart'] = saved_list
+            return redirect('/user/cart')
+    return redirect('/user/cart')
+
+def processpayment(request):
+    token = request.POST['stripeToken']
+    totalprice = request.POST['totalprice']
+    charge = stripe.Charge.create(
+        amount=int(totalprice)*100,
+        currency = "usd",
+        description="Record Purchase from recordstore.com",
+        source=token,
+    )
+    user = User.objects.get(id=request.session['id'])
+    saved_list = request.session['cart']
+    thisorder = Order.objects.create(status=0,user=user)
+    for item in saved_list:
+        recorditem = RecordItem.objects.create(order = thisorder, record = Record.objects.get(id=item['id']), quantity = item['quantity'])
+    del request.session['cart']
+    return redirect('/user/displayconfirmation')
+
+def display_confirmation(request):
+    return render(request, 'users_app/confirmation.html')
 
 def search(request):
     noartist = False

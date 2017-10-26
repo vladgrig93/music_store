@@ -59,54 +59,71 @@
             <thead>
               <tr>
                 <th>Record</th>
+                <th>Artist</th>
+                <th>Price</th>
                 <th>Quantity</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
+                {% for recordobj in listofrecords %}
               <tr>
-                <th scope="row">{{record.name}}</th>
-                <td>{{record.quantity}}</td>
-                <td></td>
-                <td>@mdo</td>
+                <th scope="row">{{recordobj.record.name}}</th>
+                <td>{{recordobj.record.artist}}</td>
+                <td>$ {{recordobj.record.price}}</td>
+                <td>{{recordobj.quantity}}</td>
+                <td><form method="POST" action="/user/removeitem">
+                    {% csrf_token %}<input type="hidden" value={{recordobj.record.id}} name="record_to_be_deleted"><input type="hidden" value={{recordobj.quantity}} name="record_quantity"><input type="submit" value="X"></form></td>
               </tr>
-
+              {% endfor %}
+              <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <th scope="row">Total Price: </th>
+                  <td> ${{totalprice}}</td>
+              </tr>
             </tbody>
           </table>
-    <h1 style="color:black;">Previous Purchases</h1>
-    <table class="table" style="color:black;">
-            <thead>
-              <tr>
-                <th>Record</th>
-                <th>Quantity</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
 
-              <tr>
-                <th scope="row">{{record.name}}</th>
-                <td>{{record.quantity}}</td>
-                <td></td>
-                <td>@mdo</td>
-              </tr>
+          <form action="/user/processpayment" method="POST">
+            {%csrf_token %}
+            <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_szoXRb6XsUpZ6UNnM02ikG4J"
+            data-amount={{totalprice}}+"00"
+            data-name="Stripe.com"
+            data-description="Widget"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-zip-code="true">
+            </script>
+            <input type="hidden" name="totalprice" value={{totalprice}}>
+            </form><br>
 
-            </tbody>
-          </table>
-    <form action="/your-server-side-code" method="POST">
-    <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount="{order.total}"
-    data-name="Stripe.com"
-    data-description="Widget"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-zip-code="true">
-    </script>
-    </form><br>
+            <table class="table" style="color:black;">
+                    <thead>
+                      <tr>
+                        <th>Record</th>
+                        <th>Artist</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Date of Purchase</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for recorditem in listorders%}
+                      <tr>
+                        <th scope="row">{{recorditem.record.name}}</th>
+                        <td>{{recorditem.record.artist}}</td>
+                        <td>$ {{recorditem.record.price}}</td>
+                        <td>{{recorditem.quantity}}</td>
+                        <td>{{recorditem.created_at}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
 <footer>
         <div class="container">
           <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
