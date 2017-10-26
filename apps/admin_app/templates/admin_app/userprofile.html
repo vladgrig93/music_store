@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+</head>
+<body>
+    <a href="/admin/admin_portal">Admin Home</a>
+    <h2>{{ user.first_name }} {{ user.last_name }}'s Profile</h2>
+    <form action="/admin/update_user/{{ user.id }}" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="first_name" value="{{ user.first_name }}"></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="last_name" value="{{ user.last_name }}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" value="{{ user.email }}"></td>
+            </tr>
+            <tr>
+                <td>Admin. Level:</td>
+                <td>
+                    <select name="admin">
+                        <option value="0">User</option>
+                        <option value="1">Admin</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update User"></td>
+            </tr>
+        </table>
+    </form>
+    <h3>{{ user.first_name }}'s Orders:</h3>
+</body>
+</html>

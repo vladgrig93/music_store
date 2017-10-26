@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artist Page</title>
+</head>
+<body>
+    <a href="/admin/admin_portal">Admin Home</a>
+    <h1>Edit info for {{ artist.name }}</h1>
+    <img src="{{ artist.art_image }}" alt="">
+    <form action="/admin/update_artist/{{ artist.id }}" method="POST">
+        {% csrf_token %}
+        <table>
+            <p>***** Don't Delete Info Unless You Are Updating *****</p>
+            <tr>
+                <td>Artist Name:</td>
+                <td><input type="text" name="name" value="{{ artist.name }}"></td>
+            </tr>
+            <tr>
+                <td>Bio:</td>
+                <td><input type="text" name="bio" value="{{ artist.bio }}"></td>
+            </tr>
+            <tr>
+                <td>Image:</td>
+                <td><input type="text" name="image" value="{{ artist.art_image }}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

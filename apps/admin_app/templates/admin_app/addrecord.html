@@ -7,6 +7,7 @@
     <title>Add Record</title>
 </head>
 <body>
+    <a href="/admin/admin_portal">Admin Home</a>
     <h1>Add Record Page</h1>
     <form action="/admin/proccess_record" method="POST">
         {% csrf_token %}
@@ -22,8 +23,19 @@
             </tr>
             <tr>
                 <td>Artist:</td>
-                <td><input type="text" name="artist"></td>
             </tr>
+            <tr>
+                <td>Pick From Artists in database:</td>
+                <td>
+                    <select name="artist_list">
+                        {% for artist in artists %}
+                        <option value="{{ artist.name }}">{{ artist.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+                <td>Add a new artist to database:</td>
+                <td><input type="text" name="artist_name"></td>
             <tr>
                 <td>Genre:</td>
                 <td><input type="text" name="genre"></td>
@@ -38,7 +50,7 @@
             </tr>
             <tr>
                 <td>Image File (optional):</td>
-                <td><input type="text" name:"picture"></td>
+                <td><input type="text" name="image" value="n/a"></td>
             </tr>
             <tr>
                 <td><button type="submit">Submit Record</button></td>

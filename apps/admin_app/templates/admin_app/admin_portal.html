@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/logout">Logout</a>
-    <h1>Welcome to the Admin Portal</h1>
+    <a href="logout">Logout</a>
+    <h1>Admin Portal</h1>
     <div class="usertable">
         <h3>Users Table</h3>
         <table>
@@ -17,7 +17,12 @@
                 <td>Action</td>
             </thead>
             <tbody>
-                <!-- jinja code for filling in the user table with edit & remove buttons -->
+                {% for user in users %}
+                <tr>
+                    <td><a href="edit_user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
+                    <td><a href="">Remove</a></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -28,10 +33,19 @@
                 <td>Name</td>
                 <td>Artist</td>
                 <td>Genre</td>
+                <td>Price</td>
                 <td>Action</td>
             </thead>
             <tbody>
-                <!-- jinja code for filling record table with edit & remove actions -->
+                {% for record in records %}
+                <tr>
+                    <td><a href="edit_record_page/{{ record.id }}">{{ record.name }}</a></td>
+                    <td>{{ record.artist }}</td>
+                    <td>{{ record.genre }}</td>
+                    <td>${{ record.price }}</td>
+                    <td><a href="edit_record_page/{{ record.id }}">Edit</a> <a href="remove_record/{{ record.id }}">Remove</a></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -42,7 +56,11 @@
                 <th>Artist</th>
             </thead>
             <tbody>
-                <!-- jinja code for filling record table with edit & remove actions -->
+                {% for artist in artists %}
+                <tr>
+                    <td><a href="edit_artist_page/{{ artist.id }}">{{ artist.name }}</a></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

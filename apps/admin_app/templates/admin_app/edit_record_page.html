@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Record Page</title>
+</head>
+<body>
+    <a href="/admin/admin_portal">Admin Home</a>
+    <h1>Edit info for {{ record.name }}</h1>
+    <img src="{{ record.rec_image }}" alt="">
+    <form action="/admin/update_record/{{ record.id }}" method="POST">
+        {% csrf_token %}
+        <table>
+            <p>***** Don't Delete Info Unless You Are Updating *****</p>
+            <tr>
+                <td>Record Name:</td>
+                <td><input type="text" name="name" value="{{ record.name }}"></td>
+            </tr>
+            <tr>
+                <td>Artist Name:</td>
+                <td><input type="text" name="artist_name" value="{{ record.artist }}"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" name="description" value="{{ record.description }}"></td>
+            </tr>
+            <tr>
+                <td>Genre:</td>
+                <td><input type="text" name="genre" value="{{ record.genre }}"></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><input type="text" name="price" value="{{ record.price }}"></td>
+            </tr>
+            <tr>
+                <td>Image:</td>
+                <td><input type="text" name="image" value="{{ record.rec_image }}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
