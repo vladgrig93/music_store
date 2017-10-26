@@ -1,11 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from ..login_app.models import *
-def index(request):
-    Record.objects.create(name='Steal this album', rec_image='sdfas', price=20, genre='Rock', artist='System of a Down', description='fireee')
-    Record.objects.create(name='Greatest Hits', rec_image='', price=20, genre='Rap', artist='Tupac', description="Tupac's greatest hits!")
-    Record.objects.create(name='Jazz hits', rec_image='', price=20, genre='Jazz', artist='various', description="Mix of jazz songs")
-    Record.objects.create(name='Dreams', rec_image='', price=20, genre='EDM', artist='Zhu', description="Zhu's latest album, very chill")
-    Record.objects.create(name='Riding with the king', rec_image='', price=20, genre='Blues', artist='Eric Clapton', description="dope classics")    
+def index(request): 
     records=Record.objects.all()
     artists=Artist.objects.all()
     context={'records': records, 'artists':artists}
@@ -31,16 +26,16 @@ def artist(request):
 def record(request):
     pass
 
-'''
-    $('#category-form').submit(function(e){
-        e.preventDefault();
-        var genre = $('#genre').val()
-        $.ajax({
-            url: '/user/category/' + genre,
-            method: 'GET',
-            success: function(res){
-                $('#display-div').html(res)
-            }
-        })
-    })
-'''
+def search(request):
+    noartist = False
+    norecord = False
+    if request.POST['search'] == "":
+        return render(request, "users_app/searchresults.html")
+    records = Record.objects.filter(name__startswith=request.POST['search'])
+    artists = Artist.objects.filter(name__startswith=request.POST['search'])
+    if not records:
+        norecord = True
+    if not artists:
+        noartist = True
+    return render(request, "users_app/searchresults.html", {"records":records, "artists": artists, "header1":"Records:", "header2":"Artists:", "noartist":noartist,"norecord":norecord})
+
