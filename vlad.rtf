@@ -110,4 +110,86 @@ Your branch is up-to-date with 'origin/master'.\
 Changes not staged for commit:\
   (use "git add <file>..." to update what will be committed)\
   (use "git checkout -- <file>..." to discard changes in working directory)\
-}
+Rebase\
+\
+musicstore Vlad$ git checkout vlad_branch\
+Switched to branch 'vlad_branch'\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git rebase master\
+First, rewinding head to replay your work on top of it...\
+Applying: updated artists, categories, user portal page\
+Using index info to reconstruct a base tree...\
+M	apps/users_app/templates/users_app/user_portal.html\
+.git/rebase-apply/patch:60: trailing whitespace.\
+    <h3>\{\{display.bio\}\}</h3>  \
+.git/rebase-apply/patch:94: trailing whitespace.\
+                <td><a href="">\{\{record.name\}\}</a></td>    \
+.git/rebase-apply/patch:95: trailing whitespace.\
+                <td><a href="">\{\{record.artist\}\}</a></td>   \
+.git/rebase-apply/patch:96: trailing whitespace.\
+                <td>$ \{\{record.price\}\}</td>   \
+.git/rebase-apply/patch:97: trailing whitespace.\
+                <td>\{\{record.description\}\}</td>   \
+warning: squelched 6 whitespace errors\
+warning: 11 lines add whitespace errors.\
+Falling back to patching base and 3-way merge...\
+Auto-merging apps/users_app/templates/users_app/user_portal.html\
+CONFLICT (content): Merge conflict in apps/users_app/templates/users_app/user_portal.html\
+error: Failed to merge in the changes.\
+Patch failed at 0001 updated artists, categories, user portal page\
+The copy of the patch that failed is found in: .git/rebase-apply/patch\
+\
+When you have resolved this problem, run "git rebase --continue".\
+If you prefer to skip this patch, run "git rebase --skip" instead.\
+To check out the original branch and stop rebasing, run "git rebase --abort".\
+\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git rebase --continue\
+apps/users_app/templates/users_app/user_portal.html: needs merge\
+You must edit all merge conflicts and then\
+mark them as resolved using git add\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git rebase --continue\
+apps/users_app/templates/users_app/user_portal.html: needs merge\
+You must edit all merge conflicts and then\
+mark them as resolved using git add\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git status\
+\cf5 rebase in progress; onto \cf2 017603b\
+You are currently rebasing branch 'vlad_branch' on '017603b'.\
+  (fix conflicts and then run "git rebase --continue")\
+  (use "git rebase --skip" to skip this patch)\
+  (use "git rebase --abort" to check out the original branch)\
+\
+Changes to be committed:\
+  (use "git reset HEAD <file>..." to unstage)\
+\
+	\cf4 new file:   apps/login_app/migrations/0005_auto_20171025_2007.py\cf2 \
+	\cf4 modified:   apps/users_app/templates/users_app/artist.html\cf2 \
+	\cf4 modified:   apps/users_app/templates/users_app/categories.html\cf2 \
+	\cf4 modified:   apps/users_app/urls.py\cf2 \
+	\cf4 modified:   apps/users_app/views.py\cf2 \
+\
+Unmerged paths:\
+  (use "git reset HEAD <file>..." to unstage)\
+  (use "git add <file>..." to mark resolution)\
+\
+	\cf5 both modified:   apps/users_app/templates/users_app/user_portal.html\cf2 \
+\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git add user_portal.html\
+fatal: pathspec 'user_portal.html' did not match any files\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git add apps/users_app/templates/users_app/user_portal.html\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git rebase --continue\
+Applying: updated artists, categories, user portal page\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git branch\
+  master\
+* \cf4 vlad_branch\cf2 \
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git status\
+On branch vlad_branch\
+nothing to commit, working tree clean\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ git push origin vlad_branch\
+Counting objects: 13, done.\
+Delta compression using up to 4 threads.\
+Compressing objects: 100% (12/12), done.\
+Writing objects: 100% (13/13), 2.38 KiB | 0 bytes/s, done.\
+Total 13 (delta 8), reused 0 (delta 0)\
+remote: Resolving deltas: 100% (8/8), completed with 8 local objects.\
+To https://github.com/vladgrig93/music_store.git\
+ * [new branch]      vlad_branch -> vlad_branch\
+(djangoEnv) Vladimirs-MacBook-Air:musicstore Vlad$ python manage.py ru}
