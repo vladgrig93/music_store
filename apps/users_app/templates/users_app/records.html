@@ -7,13 +7,13 @@
     <title>Record</title>
 </head>
 <body>
-    <h1>{record.name}</h1>
-    <h1>{record.image}</h1>
-    <h3>{record.description}</h3>       
-    <h3>{record.genre}</h3>       
-    <h3>{record.price}</h3>               
+    <h1>{{record.name}}</h1>
+    <h1><img src={{record.rec_image}}></h1>
+    <h3>{{record.description}}</h3>       
+    <h3>{{record.genre}}</h3>       
+    <h3>$ {{record.price}}</h3>               
     <h3><a href="">Add to Cart</a></h3>
-    <a href="">Home</a> 
+    <a href="/user/user_portal">Home</a> 
     <a href="/logout">Logout</a>              
 </body>
 </html>
