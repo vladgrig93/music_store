@@ -92,3 +92,10 @@ def search(request):
         noartist = True
     return render(request, "users_app/searchresults.html", {"records":records, "artists": artists, "header1":"Records:", "header2":"Artists:", "noartist":noartist,"norecord":norecord})
 
+    return render(request, 'users_app/user_portal.html')
+def settings(request):
+    user = User.objects.filter(id = request.session['id'])
+    context = {
+        "user": user
+    }
+    return render(request, 'users_app/user_profile.html', context)
