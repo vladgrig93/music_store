@@ -6,8 +6,6 @@ import stripe
 stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
 
 
-
-
 def index(request):
     if len(Artist.objects.all())<1:
         Artist.objects.create(name='Ti esto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', 
