@@ -7,7 +7,7 @@ from django.contrib import messages
 def index(request):
     users = User.objects.exclude(admin=1)
     records = Record.objects.all()
-    artists = Artist.objects.all()
+    artists = Artist.objects.order_by('name')
     context = {
         "users": users,
         "records": records,
@@ -99,8 +99,12 @@ def update_record(request, record_id):
 
 def edit_artist_page(request, artist_id):
     artist = Artist.objects.get(id=artist_id)
+    
+    
     context = {
-        "artist": artist
+        "artist": artist,
+       
+        
     }
     return render (request, 'admin_app/edit_artist_page.html', context)
 
