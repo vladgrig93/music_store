@@ -29,17 +29,24 @@
                                 <span class="icon-bar"></span>
                     </button>
                 <div class="navbar-brand">
-                    <a href="index.html"><h1>Welcome to Your Record Store</h1></a>
+                    <a href="/user/user_portal"><h1>Welcome to Your Record Store</h1></a>
                 </div>
                 </div>
     
                 <div class="navbar-collapse collapse">
                 <div class="menu">
                     <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation"><a href="#home" class="active">Home</a></li>
-                    <li role="presentation"><a href="#about">About Us</a></li>
-                    <li role="presentation"><a href="#Cart">Cart</li>
-                    <img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-top: 14px;"></a>
+                    <li role="presentation"><a href="/user/user_portal" class="active">Home</a></li>
+                    <li role="presentation"><a href="/user/cart">Cart</li>
+                    <li><img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-left:-30px;margin-top: -8px;"></a></li>
+                    <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a href="/user/settings">Account Settings</a></li>
+                              <li><a href="/logout">Logout</a></li>
+                            </ul>
+                          </li>
                     </ul>
                 </div>
                 </div>
@@ -63,13 +70,13 @@
                     <div class="carousel-inner">
                       <div class="item active">
                           {% load static %}
-                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                        <img src="{% static 'img/sliderimg1.jpg' %}" class="img-responsive" alt="">
                       </div>
                       <div class="item">
-                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                        <img src="{% static 'img/sliderimg2.jpg' %}" class="img-responsive" alt="">
                       </div>
                       <div class="item">
-                        <img src="{% static 'img/3.jpg' %}" class="img-responsive" alt="">
+                        <img src="{% static 'img/sliderimg3.jpg' %}" class="img-responsive" alt="">
                       </div>
                     </div>
         
@@ -94,12 +101,18 @@
             <div class="col-md-6 col-md-offset-3">
             <h2>Search For Music</h2>
             <hr>
-            <form action="" method="POST">
-    
+            <form action="/user/search" method="POST">
+                {% csrf_token %}
                 <input type="text" name="search" id="searchbar">
-                <input type="submit" value="Go">
             </form>
             </div>
+
+
+                <div id="displaysearchresults">
+
+                </div>
+
+
         </div>
     </div>
     </div>
@@ -115,25 +128,25 @@
             </div>
         </div>
         <div class="container">
-            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+            <div class="productlistitem" style="height: 200px;width: 300px;display: inline-block;margin-left: 60px;">
                 <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
-                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                <div style="display: inline-block;margin-left: 20px;">
                     <h4 style="">Album Title</h4>
                     <h5>Album Artist</h5>
                 </div>
                 <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+            <div class="productlistitem" style="height: 200px;width: 300px;display: inline-block;margin-left: 60px;">
                 <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
-                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                <div style="display: inline-block;margin-left: 20px;">
                     <h4 style="">Album Title</h4>
                     <h5>Album Artist</h5>
                 </div>
                 <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
+            <div class="productlistitem" style="height: 200px;width: 300px;display: inline-block;margin-left: 60px;">
                 <img src="https://spark.adobe.com/images/landing/examples/design-music-album-cover.jpg" style="width: 100px;height: auto;margin:0px;display:inline-block;">
-                <div id="titleauthor" style="display: inline-block;margin-left: 20px;">
+                <div style="display: inline-block;margin-left: 20px;">
                     <h4 style="">Album Title</h4>
                     <h5>Album Artist</h5>
                 </div>
@@ -242,4 +255,16 @@
   <script src="{% static 'js/jquery.easing.min.js' %}"></script>
   <script src="{% static 'js/jquery.isotope.min.js' %}"></script>
   <script src="{% static 'js/functions.js' %}"></script>
+  <script>
+        $('#searchbar').keyup(function(){
+            $.ajax({
+                url: '/user/search',
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function(serverResponse){
+                    $('#displaysearchresults').html(serverResponse)
+                }
+            });
+        });
+    </script>
 </html>
