@@ -5,8 +5,8 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages 
 
 def index(request):
-    users = User.objects.exclude(admin=1)
-    records = Record.objects.all()
+    users = User.objects.exclude(admin=1).order_by('first_name')
+    records = Record.objects.order_by('name')
     artists = Artist.objects.order_by('name')
     context = {
         "users": users,
@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'admin_app/admin_portal.html', context)
 
 def addrecord(request):
-    artists = Artist.objects.all()
+    artists = Artist.objects.order_by("name")
     context = {
         "artists": artists
     }
