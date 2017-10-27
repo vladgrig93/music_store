@@ -14,5 +14,6 @@ urlpatterns=[
     url(r'displayconfirmation$',views.confirm),
     url(r'processpayment$',views.processpayment),
     url(r'^settings$', views.settings),
+    url(r'^update/(?P<user_id>\d+)$', views.update),
     
 ]

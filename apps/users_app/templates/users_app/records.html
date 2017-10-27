@@ -25,7 +25,7 @@
                                         <span class="icon-bar"></span>
                             </button>
                         <div class="navbar-brand">
-                            <a href="/user/user_portal"><h1>Welcome to Your Record Store  {{request.session.first_name}}</h1></a>
+                            <a href="/user/user_portal"><h1>The Record Shoppe</h1></a>
                         </div>
                         </div>
             
@@ -55,12 +55,12 @@
     
     <div style= "padding: 100px; display: inline-block;">
         <h1 style="color: black;">{{record.name}}</h1>
-        <h4><a href="">{{record.artist}}</a></h4>
+        <h4><a href="/user/artist/{{record.id}}">{{record.artist}}</a></h4>
         <h1><img src={{record.rec_image}} style="width: 400px;"></h1>
     </div>
     <div style="display: inline-block;">
         <p>About: <h4>{{record.description}}</h4></p>       
-        <p>Genre:<h4>{{record.genre}}</h4></p>       
+        <p>Genre:<a href="/user/category/{{record.genre}}"><h4>{{record.genre}}</h4></a></p>       
         <p>Price:<h4>${{record.price}}</h4></p>  
         <form method="post" action="/user/addrecord" style="padding-top:10px;">
             {% csrf_token %}
@@ -92,7 +92,7 @@
         
                 <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                 <div class="text-center">
-                    <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
+                    <img src="{% static 'img/logo.png' %}" alt="">
     
                 </div>
                 </div>
