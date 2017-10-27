@@ -26,6 +26,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Cart',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Order',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -49,17 +57,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='RecordItem',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orderItems', to='login_app.Order')),
-                ('record', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recorditem1', to='login_app.Record')),
-            ],
-        ),
-        migrations.CreateModel(
             name='User',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -74,17 +71,27 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='order',
-            name='recorditems',
-            field=models.ManyToManyField(related_name='order_item', through='login_app.RecordItem', to='login_app.Record'),
+            name='recs',
+            field=models.ManyToManyField(related_name='orders', to='users_app.Record'),
         ),
         migrations.AddField(
             model_name='order',
             name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_orders', to='login_app.User'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_orders', to='users_app.User'),
+        ),
+        migrations.AddField(
+            model_name='cart',
+            name='items',
+            field=models.ManyToManyField(related_name='carts', to='users_app.Record'),
+        ),
+        migrations.AddField(
+            model_name='cart',
+            name='owner',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='shopping_cart', to='users_app.User'),
         ),
         migrations.AddField(
             model_name='artist',
             name='record',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='artists', to='login_app.Record'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='artists', to='users_app.Record'),
         ),
     ]

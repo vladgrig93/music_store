@@ -85,8 +85,11 @@ def artist(request, artist_id):
     return render(request, 'users_app/artist.html', context)
 
 def record(request, artist_record_id):
+    
+
     record=Record.objects.get(id=artist_record_id)
     context={'record':record}
+    
     return render(request, 'users_app/records.html', context)
 
 def addrecord(request):
