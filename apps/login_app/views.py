@@ -17,7 +17,7 @@ def register(request):
         hashedpassword=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
         user=User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'],password=hashedpassword)
         print user
-        request.session['id']=user.id#logs this user into system
+        request.session['first_name']=user.first_name #logs this user into system
         return redirect('user/user_portal')#change name
 
 def login(request):
