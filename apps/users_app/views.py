@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect
 from ..login_app.models import *
 from xml.etree import ElementTree
 import stripe
+import requests
+import json
 
 
 stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
@@ -93,9 +95,14 @@ def artist(request, artist_id):
     return render(request, 'users_app/artist.html', context)
 
 def record(request, artist_record_id):
-    
+
     record=Record.objects.get(id=artist_record_id)
-    context={'record':record}
+    youtube = requests.get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q="+record.artist+" "+record.name+"&type=video&key=AIzaSyD1p01u8hMTqxtWZMMrNdH0jbO153a4fRg")
+    json_data = json.loads(youtube.text)
+    youtubeid = json_data['items'][0]['id']['videoId']
+    print youtubeid
+    context={'record':record,
+    'youtube': youtubeid}
     return render(request, 'users_app/records.html', context)
 
 def addrecord(request):
