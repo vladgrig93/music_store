@@ -68,7 +68,7 @@ class Artist(models.Model):
     name=models.CharField(max_length=255)
     bio=models.TextField()
     art_image=models.TextField()
-    record=models.ForeignKey(Record, related_name='artists')
+    record = models.ForeignKey(Record, related_name="artists")
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 

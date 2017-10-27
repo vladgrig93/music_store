@@ -81,9 +81,6 @@ def index(request):
     context={'records': records, 'artists':artists}
     return render(request, 'users_app/user_portal.html', context)
 
-def viewcart(request):
-    return render(request, 'users_app/cart.html')
-
 def category(request, artist_record_genre):
     request.session['genre']=artist_record_genre
     display=Artist.objects.record=Record.objects.filter(genre=artist_record_genre)
