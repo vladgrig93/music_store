@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^admin_portal$', views.index),
     url(r'^logout$', views.logout),
     url(r'^edit_user/(?P<user_id>\d+)$', views.edit_user),
+    url(r'^remove_user/(?P<user_id>\d+)$', views.remove_user),
     url(r'^remove_record/(?P<record_id>\d+)$', views.remove_record),
     url(r'^edit_record_page/(?P<record_id>\d+)$', views.edit_record_page),
     url(r'^edit_artist_page/(?P<artist_id>\d+)$', views.edit_artist_page),
