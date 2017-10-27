@@ -13,11 +13,11 @@ stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
 def index(request):
     if len(Artist.objects.all())<1:
         Record.objects.create(name='Club hits 2017', artist="Tiesto", rec_image="https://pbs.twimg.com/profile_images/815327700810285057/25nr1B16.jpg", price=20, genre='EDM', description='best of tiesto')
-        Artist.objects.create(name='Tiesto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', art_image="https://images-na.ssl-images-amazon.com/images/I/C1blmwzSGfS._SL1000_.png", record=Record.objects.last())
-
-        Record.objects.create(name='All Eyez on Me', artist='Tupac',rec_image='https://static.gigwise.com/community/105571/all-eyez-on-me-20-qd3-remembers-2pac-his-seminal-death-row-debut-vts41ruk', price=20, genre='Rap', description='Latest studio album by Tupac')
+        Artist.objects.create(name='Tiesto', bio='Tijs Michiel Verwest, better known by his stage name Tiesto, is a Dutch DJ and record producer', 
+        art_image="https://images-na.ssl-images-amazon.com/images/I/C1blmwzSGfS._SL1000_.png", record=Record.objects.last())
+        
+        Record.objects.create(name='All Eyez on Me', artist='Tupac', rec_image='https://static.gigwise.com/community/105571/all-eyez-on-me-20-qd3-remembers-2pac-his-seminal-death-row-debut-vts41ruk', price=20, genre='Rap', description='Latest studio album by Tupac')
         Artist.objects.create(name='Tupac', bio='Shakur began his career as a roadie, backup dancer, and MC for the alternative hip hop group Digital Underground, eventually branching off as a solo artist', art_image="http://www.billboard.com/files/media/tupac-bw-portrait-photofest-billboard-1548.jpg", record=Record.objects.last()) 
-
         
         Record.objects.create(name='Toxicity', artist=
         "System of a Down", rec_image='https://images-na.ssl-images-amazon.com/images/I/61Wt2PvyIhL.jpg', price=20, genre='Rock', description='2nd album by SOAD!')
@@ -28,11 +28,9 @@ def index(request):
 
         Record.objects.create(name='Generationwhy', artist="Zhu", rec_image='https://images.genius.com/113fed86b1d0b579a00aeb54631b11cf.1000x1000x1.jpg', price=20, genre='EDM',description='Zhu is fire')
         Artist.objects.create(name='Zhu', bio="Zhu's success carried over into 2017, where he was a featured performer in Ultra Music Festival 2017 in Miami on the live stage on March 24, 2017. His performance was positively received.", art_image='http://dailytrojan.com/wp-content/uploads/2016/09/zhu-720x340.jpg',record=Record.objects.last())
-
         
         Record.objects.create(name='Issa Album', artist="21 Savage", rec_image='http://images.genius.com/c882a112b55acb3623fa4b0e4d9bd37c.1000x1000x1.jpg', price=20, genre='Rap', description='horrible')
         Artist.objects.create(name='21 Savage', bio='Shayaa Bin Abraham-Joseph (born October 22, 1992), better known by his stage name 21 Savage, is an American rapper from Atlanta, Georgia.', art_image='https://upload.wikimedia.org/wikipedia/commons/0/03/Rapper_21_Savage.jpg', record=Record.objects.last())
-
         
         Record.objects.create(name='Jazz Masters Collection', artist="Duke Ellington", rec_image='http://direct.rhapsody.com/imageserver/images/Alb.218913062/600x600.jpg', price=20, genre='Jazz', description='best of Duke Ellington')
         Artist.objects.create(name='Duke Ellington', bio='Greatest hits by legendary Tiesto!', art_image='https://upload.wikimedia.org/wikipedia/commons/a/af/Duke_Ellington_-_publicity.JPG', record=Record.objects.last())
@@ -73,11 +71,7 @@ def index(request):
 
         Record.objects.create(name="Slaughter of the Soul", artist="At The Gates", description="Timeless melodic death metal record", genre="Metal", price="30", rec_image="http://www.leastworstoption.com/wp-content/uploads/1385119252_606f92426903ec9d4b3151d3ad02267b.jpg")
         Artist.objects.create(name="At The Gates", bio="n/a", art_image="http://distortedsoundmag.com/wp-content/uploads/2017/03/Band-Photo-At-The-Gates.jpg", record=Record.objects.last())
-        
-        
-        
-        
-
+    
     records=Record.objects.all()
     artists=Artist.objects.all()
     context={'records': records, 'artists':artists}
@@ -210,5 +204,5 @@ def update(request, user_id):
     user.last_name = request.POST['last_name']
     user.email = request.POST['email']
     user.save()
-
+    request.session['first_name']=user.first_name
     return redirect ('/user/settings')

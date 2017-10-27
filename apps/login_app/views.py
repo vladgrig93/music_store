@@ -18,7 +18,7 @@ def register(request):
         user=User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'],password=hashedpassword)
         print user
         request.session['first_name']=user.first_name #logs this user into system
-        return redirect('user/user_portal')#change name
+        return redirect('/')#change name
 
 def login(request):
     login_return=User.objects.login_model(request.POST)
