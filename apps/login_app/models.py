@@ -56,6 +56,8 @@ class Record(models.Model):
     description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return "<{} {} {}>".format(self.name, self.artist, self.price)
 
 class Order(models.Model):
     status=models.BooleanField(default=False)

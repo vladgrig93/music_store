@@ -165,8 +165,6 @@ def processpayment(request):
     del request.session['cart']
     return redirect('/user/displayconfirmation')
 
-def display_confirmation(request):
-    return render(request, 'users_app/confirmation.html')
 
 def search(request):
     noartist = False
