@@ -56,6 +56,8 @@ class Record(models.Model):
     description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return "<{} {} {}>".format(self.name, self.artist, self.price)
 
 class Order(models.Model):
     status=models.BooleanField(default=False)
@@ -68,7 +70,7 @@ class Artist(models.Model):
     name=models.CharField(max_length=255)
     bio=models.TextField()
     art_image=models.TextField()
-    record=models.ForeignKey(Record, related_name='artists')
+    record = models.ForeignKey(Record, related_name="artists")
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
