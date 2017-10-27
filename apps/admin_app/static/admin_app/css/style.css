@@ -11,11 +11,7 @@
 /* ==== overwrite bootstrap standard ==== */
 @import url('animate.css');
 
-#user_table {
-	color: black;
-	width: 250px; 
-	border: 1px solid black;
-}
+
 
 #fillerdiv {
 	height: 90px;
@@ -24,7 +20,6 @@
 
 #searchbar{
 	width: 500px;
-	color: black;
 }
 
 body {
