@@ -1,9 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from ..login_app.models import *
+from xml.etree import ElementTree
 import stripe
 
 
 stripe.api_key = "sk_test_h5SNwnBXX4FmHVQNxEy6ZLJu"
+
 
 
 def index(request):
@@ -85,6 +87,7 @@ def artist(request, artist_id):
     return render(request, 'users_app/artist.html', context)
 
 def record(request, artist_record_id):
+    
     record=Record.objects.get(id=artist_record_id)
     context={'record':record}
     return render(request, 'users_app/records.html', context)
@@ -125,7 +128,7 @@ def displaycart(request):
 
     context = {
         "listofrecords":listofrecords,
-        "totalprice":int(totalprice)*100,
+        "totalprice":totalprice,
         "listorders":listofpreviousorders,
     }
     return render(request, 'users_app/cart.html', context)
@@ -187,3 +190,12 @@ def confirm(request):
         "artists": artists
     }
     return render(request, 'users_app/confirmation.html', context)
+
+def update(request, user_id):
+    user = User.objects.get(id = user_id)
+    user.first_name = request.POST['first_name']
+    user.last_name = request.POST['last_name']
+    user.email = request.POST['email']
+    user.save()
+
+    return redirect ('/user/settings')

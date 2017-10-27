@@ -115,6 +115,7 @@
 
 #order_table_div {
     margin-left: 20px;
+    margin-bottom: 50px;
 }
 
 #edit_record_form {
@@ -235,4 +236,62 @@
     color: black;
     border-radius: 10px;
     border-style: 1px;
+}
+
+#order_table {
+    color: black;
+    width: 300px; 
+    border: 1px solid black;
+}
+
+#order_table th {
+    text-align: left;
+    background-color: #D8AD6F;
+    color: black;
+}
+
+#order_table td, #order_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#order_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#order_table tr:hover {
+    background-color: #ddd;
+}
+
+#edit_order_form {
+    margin-top: 100px;
+    margin-left: 25px;
+}
+
+#edit_order_table {
+    color: black;
+    width: 400px; 
+    border: 1px solid black;
+}
+
+#edit_order_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#edit_artist_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#update_order_button {
+    margin-top: 15px;
+    background-color: #D8AD6F;
+    color: black;
+    border-radius: 10px;
+    border-style: 1px;
+}
+
+#items_in_order_div {
+    margin-left: 20px;
+    margin-top: 25px;
 }
