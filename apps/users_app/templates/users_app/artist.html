@@ -25,15 +25,14 @@
                                     <span class="icon-bar"></span>
                         </button>
                     <div class="navbar-brand">
-                        <a href="/user/user_portal"><h1>Welcome to Your Record Store  {{request.session.first_name}}</h1></a>
+                        <a href="/user/user_portal"><h1>The Record Shoppe</h1></a>
                     </div>
                     </div>
-        
                     <div class="navbar-collapse collapse">
                     <div class="menu">
                         <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation"><a href="/user/user_portal" class="active">Home</a></li>
-                        <li role="presentation"><a href="/user/viewcart">Cart</li>
+                        <li role="presentation"><a href="/user/viewcart">{{request.session.first_name}}'s Cart</li>
                         <li><img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-left:-30px;margin-top: -8px;"></a></li>
                         <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -49,10 +48,12 @@
                 </div>
             </nav>
         </header>
-    <div style= "padding: 100px; background-color:#f7f2f2">
+    <div style= "padding: 100px; display: inline-block;">
         <h1 style="color: black;">{{artist.name}}</h1>
         <h4>{{record.artist}}</h4>
         <h1><img src={{artist.art_image}} style="width: 400px;"></h1>
+    </div>
+    <div style="display: inline-block; width: 300px;">
         <p>Bio: <h4>{{artist.bio}}</h4></p>
         <p>Records: <h4><a href="/user/record/{{artist.record.id}}">{{artist.record.name}}</a></h4></p>                    
     </div> 

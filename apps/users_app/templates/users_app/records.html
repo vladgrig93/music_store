@@ -50,13 +50,15 @@
                 </nav>
             </header>
 
-                         
+                      
 
     
     <div style= "padding: 100px; background-color:#f7f2f2">
         <h1 style="color: black;">{{record.name}}</h1>
         <h4><a href="">{{record.artist}}</a></h4>
         <h1><img src={{record.rec_image}} style="width: 400px;"></h1>
+    </div>
+    <div style="display: inline-block;">
         <p>About: <h4>{{record.description}}</h4></p>       
         <p>Genre:<h4>{{record.genre}}</h4></p>       
         <p>Price:<h4>${{record.price}}</h4></p>  
@@ -74,29 +76,31 @@
             </form>  
     </div> 
     
-    <footer>
-        <div class="container">
-            <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h4>About Us</h4>
-            <p>We are recordstore.com</p>
-            <div class="contact-info">
-                <ul>
-                <li><i class="fa fa-home fa"></i> 175 E Olive St. Burbank, CA 91502</li>
-                <li><i class="fa fa-phone fa"></i> 747 200 5558</li>
-                <li><i class="fa fa-envelope fa"></i> dojo@dojo.com</li>
-                </ul>
-            </div>
-            </div>
-    
-            <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="text-center">
-                <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
 
-            </div>
-            </div>
+    <footer>
+            <div class="container">
+                <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <h4>About Us</h4>
+                <p>We are recordstore.com</p>
+                <div class="contact-info">
+                    <ul>
+                    <li><i class="fa fa-home fa"></i> 175 E Olive St. Burbank, CA 91502</li>
+                    <li><i class="fa fa-phone fa"></i> 747 200 5558</li>
+                    <li><i class="fa fa-envelope fa"></i> dojo@dojo.com</li>
+                    </ul>
+                </div>
+                </div>
+        
+                <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div class="text-center">
+                    <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
     
-        </div>
-    </footer>
+                </div>
+                </div>
+        
+            </div>
+        </footer>
+
 </body>
 {% load static %}
 <script src="{% static 'js/jquery.js' %}"></script>
