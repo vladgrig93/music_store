@@ -22,8 +22,8 @@
         <tbody>
             {% for record in display %}
             <tr>
-                <td><a href="">{{record.name}}</a></td>    
-                <td><a href="">{{record.artist}}</a></td>   
+                <td><a href="/user/record/{{record.id}}">{{record.name}}</a></td>    
+                <td>{{record.artist}}</a></td>   
                 <td>$ {{record.price}}</td>   
                 <td>{{record.description}}</td>   
                 <td><a href="">Add to Cart</a></td>   

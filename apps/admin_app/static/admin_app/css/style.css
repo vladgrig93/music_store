@@ -11,11 +11,7 @@
 /* ==== overwrite bootstrap standard ==== */
 @import url('animate.css');
 
-#user_table {
-	color: black;
-	width: 250px; 
-	border: 1px solid black;
-}
+
 
 #fillerdiv {
 	height: 90px;
@@ -24,7 +20,6 @@
 
 #searchbar{
 	width: 500px;
-	color: black;
 }
 
 body {
@@ -111,7 +106,7 @@ a:hover {
 	margin-top:3px;
 	float: left;	
 	font-size: 25px;	
-	color:#d9ad6a;	
+	color:#d9ae6a;	
 	text-transform:uppercase;
 	font-weight:900;
 }
@@ -147,7 +142,7 @@ a:hover {
 }
 
 .nav-tabs > li > a:hover {	
-	color: #d9ad6a;
+	color: #d9ae6a;
 	border-color: #fff #fff #fff;
 	border-radius:0;
 	background-color:#fff; 
