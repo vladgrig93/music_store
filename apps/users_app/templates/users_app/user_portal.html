@@ -125,7 +125,7 @@
             </div>
         </div>
         
-        <div class="container">
+        <div class="container" style="overflow:scroll; height: 1000px;">
             {%for artist in artists %}
             <div class="productlistitem" style="height: 400px;width: 300px;display: inline-block;margin-left: 60px;">
                 <a href="record/{{artist.record.id}}"><img src={{artist.record.rec_image}} style="width: 300px;height: auto;margin:0px;display:inline-block;"></a>
