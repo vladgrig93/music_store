@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 urlpatterns=[
     url(r'^user_portal$', views.index),
-    url(r'^viewcart$', views.viewcart),
+    url(r'^viewcart$', views.displaycart),
     url(r'^category/(?P<artist_record_genre>\w+)$', views.category),
     url(r'^artist/(?P<artist_id>\d+)$', views.artist),
     url(r'^record/(?P<artist_record_id>\d+)$', views.record),

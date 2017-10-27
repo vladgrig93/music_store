@@ -13,43 +13,47 @@
     <title>Record</title>
 </head>
 <body>
-    <header>
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                        </button>
-                    <div class="navbar-brand">
-                        <a href="/user/user_portal"><h1>The Record Shoppe</h1></a>
+        <header>
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                            </button>
+                        <div class="navbar-brand">
+                            <a href="/user/user_portal"><h1>Welcome to Your Record Store  {{request.session.first_name}}</h1></a>
+                        </div>
+                        </div>
+            
+                        <div class="navbar-collapse collapse">
+                        <div class="menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation"><a href="/user/user_portal" class="active">Home</a></li>
+                            <li role="presentation"><a href="/user/viewcart">Cart</li>
+                            <li><img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-left:-30px;margin-top: -8px;"></a></li>
+                            <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="caret"></span></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="/user/settings">Account Settings</a></li>
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
+                                    </li>
+                            </ul>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-        
-                    <div class="navbar-collapse collapse">
-                    <div class="menu">
-                        <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation"><a href="/user/user_portal" class="active">Home</a></li>
-                        <li role="presentation"><a href="/user/viewcart">{{request.session.first_name}}'s Cart</li>
-                        <li><img src="http://www.clker.com/cliparts/X/U/F/3/N/2/shopping-cart-logo.svg.hi.png" style="width:25px;height:25px;margin-left:-30px;margin-top: -8px;"></a></li>
-                        <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <span class="caret"></span></a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="/user/settings">Account Settings</a></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                                </li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    <div style= "padding: 100px; display: inline-block;">
+                </nav>
+            </header>
+
+                      
+
+    
+    <div style= "padding: 100px; background-color:#f7f2f2">
         <h1 style="color: black;">{{record.name}}</h1>
         <h4><a href="">{{record.artist}}</a></h4>
         <h1><img src={{record.rec_image}} style="width: 400px;"></h1>
@@ -58,32 +62,21 @@
         <p>About: <h4>{{record.description}}</h4></p>       
         <p>Genre:<h4>{{record.genre}}</h4></p>       
         <p>Price:<h4>${{record.price}}</h4></p>  
-        <form action="/user/viewcart"style="padding-top: 10px;">
-            <input type="Submit" style="color: black"value ="Add to Cart" name="" id="">
-        </form>             
-        
+
+        <form method="post" action="/user/addrecord" style="padding-top:10px;">
+            {% csrf_token %}
+                <p style="color:black;">Quantity:</p>
+            <select name="quantity" style="color:black">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br>
+            <input type="hidden" value={{record.id}} name="recordid">
+            <input type="submit" value="Add to Cart" style="color: black; margin-top: 20px;">
+            </form>  
     </div> 
     
 
-<<<<<<< HEAD
-    <h1>{{record.name}}</h1>
-    <h1><img src={{record.rec_image}}></h1>
-    <h3>{{record.description}}</h3>       
-    <h3>{{record.genre}}</h3>       
-    <h3>$ {{record.price}}</h3>
-    <form method="post" action="/user/addrecord">
-    {% csrf_token %}
-        Quantity:
-    <select name="quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <input type="hidden" value={{record.id}} name="recordid">
-    {{record.id}}
-    <input type="submit" value="Add to Cart">
-    </form>           
-    
     <footer>
             <div class="container">
                 <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
@@ -107,13 +100,7 @@
         
             </div>
         </footer>
-=======
-            </div>
-            </div>
-    
-        </div>
-    </footer>
->>>>>>> 1d9cad86f3a93a2ce5fe42cd54e85d3871a22be0
+
 </body>
 {% load static %}
 <script src="{% static 'js/jquery.js' %}"></script>
