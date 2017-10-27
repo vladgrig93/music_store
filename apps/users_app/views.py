@@ -198,5 +198,5 @@ def update(request, user_id):
     user.last_name = request.POST['last_name']
     user.email = request.POST['email']
     user.save()
-
+    request.session['first_name']=user.first_name
     return redirect ('/user/settings')
