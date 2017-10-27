@@ -33,9 +33,11 @@
         
                     <div class="navbar-collapse collapse">
                     <div class="menu">
-                       <a href="addrecord">Add Record</a>
-                       <a>||</a>
-                       <a href="logout">Logout</a>
+                        <a href="/user/user_portal">Store-Front</a>
+                        <a>||</a>
+                        <a href="addrecord">Add Record</a>
+                        <a>||</a>
+                        <a href="logout">Logout</a>
                     </div>
                     </div>
                 </div>
@@ -96,15 +98,23 @@
     </div>
     <div id="order_table_div">
         <h3>Order Table</h3>
-        <table>
-            <thead>
-                <td>Order #</td>
-                <td>Status</td>
-                <td>Action</td>
-            </thead>
-            <tbody>
-                <!-- jinja code for filling order table with change status button -->
-            </tbody>
+        <table id="order_table">
+            <tr>
+                <th>Order #</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                {% for order in orders %}
+                <td><a href="order_page/{{ order.id }}">{{order.id}}</a></td>
+                {% if order.status == False %}
+                <td>Pending</td>
+                {% else %}
+                <td>Shipped</td>
+                {% endif %}
+                <td><a href="order_page/{{ order.id }}">Change Status</a></td>
+                {% endfor %}
+            </tr>
         </table>
     </div>
     

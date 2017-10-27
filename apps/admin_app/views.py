@@ -8,10 +8,12 @@ def index(request):
     users = User.objects.exclude(admin=1).order_by('first_name')
     records = Record.objects.order_by('name')
     artists = Artist.objects.order_by('name')
+    orders = Order.objects.all()
     context = {
         "users": users,
         "records": records,
-        "artists": artists
+        "artists": artists,
+        "orders": orders
     }
     return render(request, 'admin_app/admin_portal.html', context)
 
@@ -117,6 +119,22 @@ def update_artist(request, artist_id):
     artist.art_image = request.POST['image']
     artist.save()
     return redirect('/admin/admin_portal')
+
+def order_page(request, order_id):
+    order = Order.objects.get(id=order_id)
+    items = RecordItem.objects.filter(order=order_id)
+    context = {
+        "order": order,
+        "items": items
+    }
+    return render(request, 'admin_app/order_page.html', context)
+
+def update_order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order.status = request.POST['status']
+    order.save()
+    return redirect('/admin/admin_portal')
+
 
 def logout(request):
     return redirect('/')
