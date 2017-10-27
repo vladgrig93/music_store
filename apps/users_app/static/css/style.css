@@ -106,7 +106,7 @@ a:hover {
 	margin-top:3px;
 	float: left;	
 	font-size: 25px;	
-	color:#d9ae6a;	
+	color:#d9ad6a;	
 	text-transform:uppercase;
 	font-weight:900;
 }
@@ -142,7 +142,7 @@ a:hover {
 }
 
 .nav-tabs > li > a:hover {	
-	color: #d9ae6a;
+	color: #d9ad6a;
 	border-color: #fff #fff #fff;
 	border-radius:0;
 	background-color:#fff; 

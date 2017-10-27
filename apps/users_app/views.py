@@ -99,3 +99,10 @@ def settings(request):
         "user": user
     }
     return render(request, 'users_app/user_profile.html', context)
+
+def confirm(request):
+    artists = Artist.objects.all()
+    context = {
+        "artists": artists
+    }
+    return render(request, 'users_app/confirmation.html', context)

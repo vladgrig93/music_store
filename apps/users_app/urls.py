@@ -7,5 +7,6 @@ urlpatterns=[
     url(r'^artist/(?P<artist_id>\d+)$', views.artist),
     url(r'^record/(?P<artist_record_id>\d+)$', views.record),
     url(r'^settings$', views.settings),
+    url(r'^confirm$', views.confirm),
     
 ]
