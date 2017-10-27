@@ -12,7 +12,8 @@ urlpatterns=[
     url(r'^removeitem$', views.removeitem),
     url(r'cart$',views.displaycart),
     url(r'displayconfirmation$',views.display_confirmation),
-    url(r'processpayment$',views.processpayment)]
+    url(r'processpayment$',views.processpayment),
     url(r'^settings$', views.settings),
+    url(r'^confirm$', views.confirm),
     
 ]
