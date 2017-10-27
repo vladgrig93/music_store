@@ -76,6 +76,11 @@ def remove_record(request, record_id):
     record.delete()
     return redirect('/admin/admin_portal')
 
+def remove_user(request, user_id):
+    user = User.objects.get(id=user_id)
+    user.delete()
+    return redirect('/admin/admin_portal')
+
 def edit_record_page(request, record_id):
     record = Record.objects.get(id=record_id)
     context = {

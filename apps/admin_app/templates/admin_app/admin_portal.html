@@ -55,7 +55,7 @@
             {% for user in users %}
             <tr>
                 <td><a href="edit_user/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
-                <td><a href="">Remove</a></td>
+                <td><a href="remove_user/{{ user.id }}">Remove</a></td>
             </tr>
             {% endfor %}
         </table>
@@ -104,8 +104,8 @@
                 <th>Status</th>
                 <th>Action</th>
             </tr>
+            {% for order in orders %}
             <tr>
-                {% for order in orders %}
                 <td><a href="order_page/{{ order.id }}">{{order.id}}</a></td>
                 {% if order.status == False %}
                 <td>Pending</td>
@@ -113,8 +113,8 @@
                 <td>Shipped</td>
                 {% endif %}
                 <td><a href="order_page/{{ order.id }}">Change Status</a></td>
-                {% endfor %}
             </tr>
+            {% endfor %}
         </table>
     </div>
     
