@@ -25,6 +25,7 @@ def login(request):
     if 'user' in login_return:
         request.session['id']=login_return['user'].id 
         request.session['first_name']=login_return['user'].first_name 
+        request.session['admin'] = login_return['user'].admin
         if login_return['user'].admin==0:
             return redirect('user/user_portal')#change name
         elif login_return['user'].admin==1:
@@ -34,7 +35,7 @@ def login(request):
         return redirect('/')
 
 def logout(request):
-    request.session.clear()
+    request.session.delete()
     return redirect('/')
 
 # def display(request):
