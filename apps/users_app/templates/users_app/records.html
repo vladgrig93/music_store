@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta id="youtubeid" data-alt="{{youtube}}">
     {% load static %}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -93,8 +94,9 @@
             <input type="submit" value="Add to Cart" style="color: black; margin-top: 20px;">
             </form>  
     </div> 
-
 <div id="youtubeplayer" style="margin-left: 300px;margin-bottom:30px;">
+
+
     <div id="player"></div>
 
     </div>
@@ -125,6 +127,7 @@
                 </div>
         
             </div>
+
         </footer>
 
 <script>
@@ -142,7 +145,7 @@
                                 player = new YT.Player('player', {
                                 height: '300',
                                 width: '580',
-                                videoId: videoID,
+                                videoId: $('#youtubeid').attr("data-alt"),
                                 events: {
                                     'onReady': onPlayerReady,
                                     'onStateChange': onPlayerStateChange

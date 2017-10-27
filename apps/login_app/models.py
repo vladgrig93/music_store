@@ -59,6 +59,7 @@ class Record(models.Model):
     def __str__(self):
         return "<{} {} {}>".format(self.name, self.artist, self.price)
 
+
 class Order(models.Model):
     status=models.BooleanField(default=False)
     user=models.ForeignKey(User, related_name='user_orders')
