@@ -43,6 +43,9 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                               <li><a href="/user/settings">Account Settings</a></li>
                               <li><a href="/logout">Logout</a></li>
+                              {% if request.session.admin == 1 %}
+                              <li><a href="/admin/admin_portal">Admin Portal</a></li>
+                              {% endif %}
                             </ul>
                           </li>
                     </ul>
