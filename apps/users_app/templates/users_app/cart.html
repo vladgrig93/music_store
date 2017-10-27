@@ -83,23 +83,32 @@
                   <th scope="row">Total Price: </th>
                   <td> ${{totalprice}}</td>
               </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                <form action="/user/processpayment" method="POST">
+                  {%csrf_token %}
+                  <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_szoXRb6XsUpZ6UNnM02ikG4J"
+                  data-amount=Number({{totalprice}})*100
+                  data-name="Stripe.com"
+                  data-description="Widget"
+                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                  data-locale="auto"
+                  data-zip-code="true">
+                  </script>
+                  <input type="hidden" name="totalprice" value={{totalprice}}>
+                  </form>
+                  </td>
+              </tr>
             </tbody>
           </table>
 
-          <form action="/user/processpayment" method="POST">
-            {%csrf_token %}
-            <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_szoXRb6XsUpZ6UNnM02ikG4J"
-            data-amount={{totalprice}}+"00"
-            data-name="Stripe.com"
-            data-description="Widget"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true">
-            </script>
-            <input type="hidden" name="totalprice" value={{totalprice}}>
-            </form><br>
+         <br>
 
             <table class="table" style="color:black;">
                     <thead>
