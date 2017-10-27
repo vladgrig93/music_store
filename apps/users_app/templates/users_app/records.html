@@ -62,29 +62,48 @@
         
     </div> 
     
-    <footer>
-        <div class="container">
-            <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h4>About Us</h4>
-            <p>We are recordstore.com</p>
-            <div class="contact-info">
-                <ul>
-                <li><i class="fa fa-home fa"></i> 175 E Olive St. Burbank, CA 91502</li>
-                <li><i class="fa fa-phone fa"></i> 747 200 5558</li>
-                <li><i class="fa fa-envelope fa"></i> dojo@dojo.com</li>
-                </ul>
-            </div>
-            </div>
-    
-            <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="text-center">
-                <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
 
-            </div>
-            </div>
+    <h1>{{record.name}}</h1>
+    <h1><img src={{record.rec_image}}></h1>
+    <h3>{{record.description}}</h3>       
+    <h3>{{record.genre}}</h3>       
+    <h3>$ {{record.price}}</h3>
+    <form method="post" action="/user/addrecord">
+    {% csrf_token %}
+        Quantity:
+    <select name="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <input type="hidden" value={{record.id}} name="recordid">
+    {{record.id}}
+    <input type="submit" value="Add to Cart">
+    </form>           
     
-        </div>
-    </footer>
+    <footer>
+            <div class="container">
+                <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <h4>About Us</h4>
+                <p>We are recordstore.com</p>
+                <div class="contact-info">
+                    <ul>
+                    <li><i class="fa fa-home fa"></i> 175 E Olive St. Burbank, CA 91502</li>
+                    <li><i class="fa fa-phone fa"></i> 747 200 5558</li>
+                    <li><i class="fa fa-envelope fa"></i> dojo@dojo.com</li>
+                    </ul>
+                </div>
+                </div>
+        
+                <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div class="text-center">
+                    <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
+    
+                </div>
+                </div>
+        
+            </div>
+        </footer>
 </body>
 {% load static %}
 <script src="{% static 'js/jquery.js' %}"></script>

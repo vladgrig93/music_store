@@ -57,16 +57,10 @@ class Record(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
-class Cart(models.Model):
-    owner=models.OneToOneField(User,related_name='shopping_cart')
-    items=models.ManyToManyField(Record,related_name='carts')
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
-
 class Order(models.Model):
     status=models.BooleanField(default=False)
     user=models.ForeignKey(User, related_name='user_orders')
-    recs=models.ManyToManyField(Record, related_name='orders')
+    recorditems = models.ManyToManyField(Record, through="RecordItem", related_name='order_item')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
@@ -75,6 +69,13 @@ class Artist(models.Model):
     bio=models.TextField()
     art_image=models.TextField()
     record=models.ForeignKey(Record, related_name='artists')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
+class RecordItem(models.Model):
+    order = models.ForeignKey(Order, related_name = "orderItems")
+    record = models.ForeignKey(Record, related_name="recorditem1")
+    quantity = models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 

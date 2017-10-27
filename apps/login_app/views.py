@@ -34,7 +34,7 @@ def login(request):
         return redirect('/')
 
 def logout(request):
-    del request.session['id']
+    request.session.clear()
     return redirect('/')
 
 # def display(request):

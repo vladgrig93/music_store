@@ -7,5 +7,10 @@ urlpatterns=[
     url(r'^artist/(?P<artist_id>\d+)$', views.artist),
     url(r'^record/(?P<artist_record_id>\d+)$', views.record),
     url(r'^settings$', views.settings),
-    
-]
+    url(r'^artist$', views.artist),
+    url(r'^addrecord$', views.addrecord),
+    url(r'^search$', views.search),
+    url(r'^removeitem$', views.removeitem),
+    url(r'cart$',views.displaycart),
+    url(r'displayconfirmation$',views.display_confirmation),
+    url(r'processpayment$',views.processpayment)]
