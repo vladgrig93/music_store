@@ -52,15 +52,17 @@
         {% for user in user %}
         <h2>{{user.first_name}} {{user.last_name}}</h2>
         <h4>Email: {{user.email}}</h4>
-        {% endfor %}
-        <form action="" method = 'post'>
+        
+        <form action="/user/update/{{user.id}}" method = 'post'>
+            {% csrf_token %}
             <ul style="color: black;">
-            <li style= "list-style: none; padding-bottom: 5px;">Edit First Name: <input type="text" name="first_name"></li> 
-            <li style= "list-style: none; padding-bottom: 5px;">Edit Last Name: <input type="text" name="last_name"></li> 
-            <li style= "list-style: none; padding-bottom: 5px;">Edit Email: <input type="email" name="email"></li>
+            <li style= "list-style: none; padding-bottom: 5px;">Edit First Name: <input type="text" name="first_name" value = "{{user.first_name}}"></li> 
+            <li style= "list-style: none; padding-bottom: 5px;">Edit Last Name: <input type="text" name="last_name" value = "{{user.last_name}}"></li> 
+            <li style= "list-style: none; padding-bottom: 5px;">Edit Email: <input type="email" name="email" value = "{{user.email}}"></li>
             <input type="submit" >
             </ul>   
         </form>
+        {% endfor %}
     </div>
     <footer>
             <div class="container">
@@ -78,7 +80,7 @@
         
               <div class="col-md-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                 <div class="text-center">
-                  <h1 style="font-size: 100px;"><a href="/logout">Log Out</a></h4>
+                    <img src="{% static 'img/logo.png' %}" alt="">
   
                 </div>
               </div>
